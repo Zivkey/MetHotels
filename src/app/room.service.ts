@@ -15,4 +15,9 @@ export class RoomService {
   addRoom(room: Room): void {
     this.rooms.push(room);
   }
+
+  getPrice(roomPrice: number, numberOfNights: number): number {
+    return roomPrice * numberOfNights;
+  }
+
 }

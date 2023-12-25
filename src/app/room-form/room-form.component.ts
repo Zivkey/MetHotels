@@ -21,20 +21,24 @@ export class RoomFormComponent {
         airConditioning: [false],
         miniBar: [false],
         sauna: [false]
-      })
+      }),
+      numberOfNights: [1, Validators.min(1)]
     });
   }
 
   onSubmit(): void {
     if (this.roomForm.valid) {
+      const roomPrice = this.roomForm.value.roomPrice;
+      const numberOfNights = this.roomForm.value.numberOfNights;
 
       const newRoom: Room = {
         number: this.roomForm.value.roomNumber,
         floor: this.roomForm.value.roomFloor,
         type: this.roomForm.value.roomType,
         additionalServices: this.roomForm.value.additionalServices,
-        price: this.roomForm.value.roomPrice,
+        price: this.roomService.getPrice(roomPrice, numberOfNights),
       };
+  
       let additionalPrice = 0.0
 
       if (newRoom.additionalServices.airConditioning) {

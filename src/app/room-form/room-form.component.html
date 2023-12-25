@@ -39,6 +39,18 @@
     *ngIf="roomForm.get('roomPrice')?.hasError('min') && roomForm.get('roomPrice')?.touched">
     <p>Price must be greater than 0.</p>
   </div>
+
+  <label for="numberOfNights">Number of Nights:</label>
+  <input type="number" id="numberOfNights" formControlName="numberOfNights" required>
+  <div
+    *ngIf="roomForm.get('numberOfNights')?.hasError('required') && roomForm.get('numberOfNights')?.touched">
+    <p>Number of Nights is required.</p>
+  </div>
+  <div
+    *ngIf="roomForm.get('numberOfNights')?.hasError('min') && roomForm.get('numberOfNights')?.touched">
+    <p>Number of Nights must be greater than 0.</p>
+  </div>
+
   <div class="field" formGroupName="additionalServices">
     <label class="label-checkbox">
       <input type="checkbox" formControlName="airConditioning" class="checkbox-input">
