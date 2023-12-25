@@ -1,0 +1,23 @@
+nav {
+    background-color: #6D6371;
+    padding: 10px;
+    margin-bottom: 50px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0 300px;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  li {
+    margin: 0;
+    text-decoration: none;
+    color: white;
+  }
+  
+  li:hover {
+    color: rgb(57, 41, 61);
+    cursor: pointer;
+  }

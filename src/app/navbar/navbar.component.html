@@ -1,0 +1,19 @@
+<nav>
+    <ul>
+      <li *ngFor="let item of item_list" (click)="selectOption(item)">
+        {{ item }}
+      </li>
+    </ul>
+</nav>
+
+    <ng-container *ngIf="selected_option === 'Offer'">
+      <app-offers></app-offers>
+    </ng-container>
+  
+    <ng-container *ngIf="selected_option === 'Reccomentations'">
+      <app-reccomendations></app-reccomendations>
+    </ng-container>
+  
+    <ng-container *ngIf="selected_option === 'About us'">
+      <app-about-us></app-about-us>
+    </ng-container>
