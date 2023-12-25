@@ -33,3 +33,26 @@ form {
     background-color: #FDE8E9;
     color: #596475;
   }
+
+  p {
+    color: red;
+  }
+
+  .field {
+    margin: 20px 0;
+  }
+  
+  .label-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .checkbox-label {
+    margin-left: 5px;
+    color: white;
+  }
+  
+  .checkbox-input {
+    margin-right: 5px;
+  }

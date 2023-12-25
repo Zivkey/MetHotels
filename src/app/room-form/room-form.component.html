@@ -1,16 +1,57 @@
-<form (ngSubmit)="onSubmit()">
+<form [formGroup]="roomForm" (ngSubmit)="onSubmit()">
   <label for="roomNumber">Room number:</label>
-  <input type="text" id="roomNumber" [(ngModel)]="room.number" name="roomNumber" required>
+  <input type="number" id="roomNumber" formControlName="roomNumber" required>
+  <div
+    *ngIf="roomForm.get('roomNumber')?.hasError('required') && roomForm.get('roomNumber')?.touched">
+    <p>Room number is required.</p>
+  </div>
 
   <label for="roomFloor">Floor:</label>
-  <input type="number" id="roomFloor" [(ngModel)]="room.floor" name="roomFloor" required>
+  <input type="number" id="roomFloor" formControlName="roomFloor" required>
+  <div
+    *ngIf="roomForm.get('roomFloor')?.hasError('required') && roomForm.get('roomFloor')?.touched">
+    <p>Floor is required.</p>
+  </div>
+  <div
+    *ngIf="roomForm.get('roomFloor')?.hasError('min') && roomForm.get('roomFloor')?.touched">
+    <p>Floor must be greater than 0.</p>
+  </div>
 
   <label for="roomType">Room type:</label>
-  <input type="text" id="roomType" [(ngModel)]="room.type" name="roomType" required>
+  <input type="text" id="roomType" formControlName="roomType" required>
+  <div
+    *ngIf="roomForm.get('roomType')?.hasError('required') && roomForm.get('roomType')?.touched">
+    <p>Room type is required.</p>
+  </div>
+  <div
+    *ngIf="roomForm.get('roomType')?.hasError('minlength') && roomForm.get('roomType')?.touched">
+    <p>Room type must be at least 4 characters long.</p>
+  </div>
 
-  <label for="roomCapacity">Capacity:</label>
-  <input type="number" id="roomCapacity" [(ngModel)]="room.capacity" name="roomCapacity" required>
-  
-
+  <label for="roomPrice">Price:</label>
+  <input type="number" id="roomPrice" formControlName="roomPrice"
+    required>
+  <div
+    *ngIf="roomForm.get('roomPrice')?.hasError('required') && roomForm.get('roomPrice')?.touched">
+    <p>Price is required.</p>
+  </div>
+  <div
+    *ngIf="roomForm.get('roomPrice')?.hasError('min') && roomForm.get('roomPrice')?.touched">
+    <p>Price must be greater than 0.</p>
+  </div>
+  <div class="field" formGroupName="additionalServices">
+    <label class="label-checkbox">
+      <input type="checkbox" formControlName="airConditioning" class="checkbox-input">
+      <span class="checkbox-label">Air conditioning - 10$</span>
+    </label>
+    <label class="label-checkbox">
+      <input type="checkbox" formControlName="miniBar" class="checkbox-input">
+      <span class="checkbox-label">Mini Bar - 30$</span>
+    </label>
+    <label class="label-checkbox">
+      <input type="checkbox" formControlName="sauna" class="checkbox-input">
+      <span class="checkbox-label">Sauna - 50$</span>
+    </label>
+  </div>
   <button type="submit">Submit</button>
 </form>
