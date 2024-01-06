@@ -8,4 +8,12 @@ import { RoomService } from '../room.service';
 })
 export class RoomListComponent {
   constructor(public roomService: RoomService) {}
+
+  ngOnInit(): void {
+    this.roomService.getRoomsFromApi();
+  }
+
+  getRooms(): void {
+    this.roomService.getRoomsFromApi();
+  }
 }

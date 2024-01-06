@@ -17,11 +17,9 @@ export class RoomFormComponent {
       roomFloor: [0, [Validators.required, Validators.min(1)]],
       roomType: ['', [Validators.required, Validators.minLength(4)]],
       roomPrice: [0, [Validators.required, Validators.min(1)]],
-      additionalServices: this.formBuilder.group({
-        airConditioning: [false],
-        miniBar: [false],
-        sauna: [false]
-      }),
+      airConditioning: [false], 
+      miniBar: [false],         
+      sauna: [false],           
       numberOfNights: [1, Validators.min(1)]
     });
   }
@@ -30,30 +28,42 @@ export class RoomFormComponent {
     if (this.roomForm.valid) {
       const roomPrice = this.roomForm.value.roomPrice;
       const numberOfNights = this.roomForm.value.numberOfNights;
-
+  
       const newRoom: Room = {
         number: this.roomForm.value.roomNumber,
         floor: this.roomForm.value.roomFloor,
         type: this.roomForm.value.roomType,
-        additionalServices: this.roomForm.value.additionalServices,
-        price: this.roomService.getPrice(roomPrice, numberOfNights),
+        numberOfNights: this.roomForm.value.numberOfNights,
+        airConditioning: this.roomForm.value.airConditioning ?? false,
+        miniBar: this.roomForm.value.miniBar ?? false,
+        sauna: this.roomForm.value.sauna ?? false,
+        price: this.roomService.getPrice(roomPrice, numberOfNights), 
       };
+      console.log(newRoom)
+      
+      let additionalPrice = 0.0;
   
-      let additionalPrice = 0.0
-
-      if (newRoom.additionalServices.airConditioning) {
+      if (newRoom.airConditioning) {
         additionalPrice += 10;
       }
-      if (newRoom.additionalServices.miniBar) {
+      if (newRoom.miniBar) {
         additionalPrice += 30;
       }
-      if (newRoom.additionalServices.sauna) {
+      if (newRoom.sauna) {
         additionalPrice += 50;
       }
       newRoom.price += additionalPrice;
-
-      this.roomService.addRoom(newRoom);
-      this.roomForm.reset();
+      
+      this.roomService.createRoom(newRoom).subscribe(
+        response => {
+          console.log('Room created successfully:', response);
+          this.roomService.updateRooms();
+        },
+        error => {
+          console.error('Error creating room:', error);
+        }
+      );
+        this.roomForm.reset();
     } else {
       this.markFormGroupTouched(this.roomForm);
     }

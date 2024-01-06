@@ -1,4 +1,4 @@
-ul {
+ul.room-list {
   list-style-type: none;
   padding: 0;
   text-align: center; 
@@ -6,13 +6,32 @@ ul {
   margin: 0 auto; 
 }
 
-li {
+li.room-item {
   text-align: center;
   margin: 10px 0;
   padding: 10px;
   border: 1px solid rgb(201, 219, 247);
   border-radius: 4px;
-  font-weight: bolder;
-  color: #1F2232;;
+  font-weight: bold;
+  color: #1F2232;
   background-color: #BC9EC1;
+}
+
+.room-info {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.additional-services {
+  font-weight: bold;
+}
+
+.additional-services ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 5px;
+}
+
+.additional-services li {
+  margin-bottom: 3px;
 }

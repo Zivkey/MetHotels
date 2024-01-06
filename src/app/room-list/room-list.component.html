@@ -1,5 +1,14 @@
-<ul>
-    <li *ngFor="let room of roomService.getRooms()">
-      Number: {{ room.number }}, floor: {{ room.floor }}, type: {{ room.type }}, price: {{ room.price }}$
-    </li>
-  </ul>
+<ul class="room-list">
+  <li *ngFor="let room of roomService.getRooms()" class="room-item">
+    <span class="room-info">
+      Number: {{ room.number }}, Floor: {{ room.floor }}, Type: {{ room.type }}, Price: {{ room.price }}$
+    </span>
+    <div class="additional-services">
+      <ul>
+        <li *ngIf="room.airConditioning">Air Conditioning</li>
+        <li *ngIf="room.miniBar">Mini Bar</li>
+        <li *ngIf="room.sauna">Sauna</li>
+      </ul>
+    </div>
+  </li>
+</ul>

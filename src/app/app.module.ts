@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { OffersComponent } from './offers/offers.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ReccomendationsComponent } from './reccomendations/reccomendations.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ReccomendationsComponent } from './reccomendations/reccomendations.comp
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [RoomService],
   bootstrap: [AppComponent]
